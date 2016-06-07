@@ -4,11 +4,12 @@ trusty: /root/.trustyreadyforflocker /etc/apt/preferences.d/buildbot-700 /root/.
 	./preffer.sh
 
 /root/.trustyreadyforflocker:
-	date -I > /root/.readyforflocker
 	sudo apt-get update
 	sudo apt-get -y install apt-transport-https software-properties-common
 	./preffer.sh
+	date -I > /root/.trustyreadyforflocker
 
 /root/.trustyflockerinstalled:
 	sudo apt-get update
 	sudo apt-get -y install --force-yes clusterhq-flocker-cli
+	date -I > /root/.trustyflockerinstalled
