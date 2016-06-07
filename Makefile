@@ -22,6 +22,7 @@ ubuntuprep:
 /root/.trustyflockernodeinstalled:
 	sudo apt-get update
 	sudo apt-get -y install --force-yes clusterhq-flocker-node
+	sudo apt-get install -y clusterhq-flocker-docker-plugin
 	date -I > /root/.trustyflockernodeinstalled
 
 clean:
