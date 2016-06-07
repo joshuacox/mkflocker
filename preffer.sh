@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo add-apt-repository -y "deb https://clusterhq-archive.s3.amazonaws.com/ubuntu/$(lsb_release --release --short)/\$(ARCH) /"
 cat <<EOF > /tmp/apt-pref
 Package: *
 Pin: origin clusterhq-archive.s3.amazonaws.com

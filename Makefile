@@ -7,7 +7,6 @@ trusty: /root/.trustyreadyforflocker /etc/apt/preferences.d/buildbot-700 /root/.
 	date -I > /root/.readyforflocker
 	sudo apt-get update
 	sudo apt-get -y install apt-transport-https software-properties-common
-	sudo add-apt-repository -y "deb https://clusterhq-archive.s3.amazonaws.com/ubuntu/$(lsb_release --release --short)/\$(ARCH) /"
 	./preffer.sh
 
 /root/.trustyflockerinstalled:
