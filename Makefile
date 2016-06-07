@@ -13,3 +13,9 @@ trusty: /root/.trustyreadyforflocker /etc/apt/preferences.d/buildbot-700 /root/.
 	sudo apt-get update
 	sudo apt-get -y install --force-yes clusterhq-flocker-cli
 	date -I > /root/.trustyflockerinstalled
+
+clean:
+	-@sudo apt-get -y purge --force-yes clusterhq-flocker-cli
+	-@rm /root/.trustyflockerinstalled
+	-@rm /root/.trustyreadyforflocker
+	-@rm /etc/apt/preferences.d/buildbot-700
