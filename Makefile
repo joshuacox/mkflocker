@@ -4,11 +4,16 @@ node: trusty-node
 
 trusty-client: ubuntuprep /etc/apt/preferences.d/buildbot-700 /etc/apt/preferences.d/buildbot-700 /root/.trustyflockerinstalled
 
+debian-client: debprep  /root/.debianflockerinstalled
+
 trusty-node: ubuntuprep /etc/apt/preferences.d/buildbot-700 /etc/apt/preferences.d/buildbot-700 /root/.trustyflockernodeinstalled
 
-ubuntuprep:
+ubuntuprep: debprep
+
+debprep:
 	sudo apt-get update
 	sudo apt-get -y install apt-transport-https software-properties-common
+	sudo apt-get -y install gcc libffi-dev libssl-dev python2.7 python2.7-dev python-virtualenv
 
 /etc/apt/preferences.d/buildbot-700:
 	./preffer.sh
@@ -30,3 +35,11 @@ clean:
 	-@rm /root/.trustyflockerinstalled
 	-@rm /root/.trustyreadyforflocker
 	-@rm /etc/apt/preferences.d/buildbot-700
+
+/root/.debianflockerinstalled:
+	virtualenv --python=/usr/bin/python2.7 flocker-client
+	source flocker-client/bin/activate
+	pip install --upgrade pip
+	pip install https://clusterhq-archive.s3.amazonaws.com/python/Flocker-1.12.0-py2-none-any.whl
+	date -I > /root/.debianflockerinstalled
+	source flocker-client/bin/activate; flocker-ca --version
